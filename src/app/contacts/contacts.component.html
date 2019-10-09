@@ -1,0 +1,57 @@
+<p></p>
+
+<div class="container">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">La Liste des Contacts</h3>
+        </div>
+
+        <div class="panel-body">
+    <div class="form-group">
+        <label>Mots Cle :</label>
+        <input type="text" [(ngModel)]="motCle"/> 
+        <button class="btn btn-primary" (click)="chercher()">Rechercher</button>
+
+    </div>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of pageContacts?.content">
+                        <td>{{c.id}}</td>
+                        <td>{{c.nom}}</td>
+                        <td>{{c.prenom}}</td>
+                        <td>{{c.email}}</td>
+                        <td>
+                            <a (click)="onEditContact(c.id)" class="btn btn-success" > Editer</a>
+                        </td>
+                        <td>
+                            <a (click)="onDeleteContact(c)" class="btn btn-danger" > Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="container">
+                <ul class="nav nav-pills n">
+                    <li [ngClass]="{'active':i==currentPage}"  *ngFor="let p of pages ; let i=index" >
+                        <a class="clickable" (click)="gotoPage(i)" >{{i}}</a> 
+
+                    </li>
+                </ul>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
